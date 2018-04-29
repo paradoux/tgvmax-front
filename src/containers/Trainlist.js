@@ -3,23 +3,32 @@ import { connect } from 'react-redux';
 
 
 class Trainlist extends Component {
+    constructor() {
+        super();
 
-    renderConsole() {
-        if (this.props.trains.trains) {
-            this.props.trains.trains.records.forEach((record) => { console.log(record.fields) });
-        }
+        this.renderList = this.renderList.bind(this);
     }
 
-
+    renderList() {
+        let trains = this.props.trains.trains;
+        if (trains) {
+            return trains.records.map((record) => {
+                return (
+                    <div key={record.fields.destination.recordid}>
+                        {(record.fields.destination)}
+                    </div>
+                )
+            });
+        }
+    }
 
     render() {
         return (
             <div>
-                <h1> Hello List </h1>
-
-                {this.renderConsole()}
+                <div>
+                    {this.renderList()}
+                </div>
             </div>
-
         );
     }
 
