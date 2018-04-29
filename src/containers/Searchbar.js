@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 
 //App imports
-import fetchTrains from '../actions/index';
+import { fetchTrains } from '../actions/index';
 
 class Searchbar extends Component {
     constructor() {
@@ -28,7 +28,6 @@ class Searchbar extends Component {
     onFormSubmit(e) {
         e.preventDefault();
         this.props.fetchTrains(this.state.term);
-        console.log(this.props.fetchTrains(this.state.term));
     }
 
 

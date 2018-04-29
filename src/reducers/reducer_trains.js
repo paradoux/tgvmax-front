@@ -1,9 +1,10 @@
-import FETCH_TRAIN from '../actions/index';
+import { FETCH_TRAIN } from '../actions/index';
 
 export default function trainReducer(state = {}, action) {
     switch (action.type) {
         case FETCH_TRAIN:
-            return { ...state, trains: action.payload.data.records[0].recordid };
+            console.log("Adios", action);
+            return { ...state, trains: action.payload.data };
     }
     return state;
 }

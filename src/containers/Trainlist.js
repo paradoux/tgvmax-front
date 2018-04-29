@@ -4,11 +4,20 @@ import { connect } from 'react-redux';
 
 class Trainlist extends Component {
 
+    renderConsole() {
+        if (this.props.trains.trains) {
+            this.props.trains.trains.records.forEach((record) => { console.log(record.fields) });
+        }
+    }
+
+
+
     render() {
         return (
             <div>
                 <h1> Hello List </h1>
-                {console.log(this.props.trains)}
+
+                {this.renderConsole()}
             </div>
 
         );
@@ -17,7 +26,7 @@ class Trainlist extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
+    // console.log(state);
     return ({
         trains: state.trains,
     })
