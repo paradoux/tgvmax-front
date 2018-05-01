@@ -35,7 +35,6 @@ class Trainlist extends Component {
 }
 
 function mapStateToProps(state) {
-    // console.log(state);
     return ({
         trains: state.trains,
     })

@@ -21,14 +21,18 @@ class Searchbar extends Component {
     }
 
     onInputChange(e) {
+        e.preventDefault();
         this.setState({
-            term: e.target.value.toUpperCase()
+            term: e.target.value.toUpperCase(),
         });
     }
 
     onFormSubmit(e) {
         e.preventDefault();
-        this.props.fetchTrains(this.state.term);
+        let inputvalue = this.state.term;
+        let splitted = inputvalue.split(/(\([^]+\))/g);
+        if (splitted.length == 3) { inputvalue = splitted[0].concat(splitted[1].toLowerCase()) }
+        this.props.fetchTrains(inputvalue);
     }
 
     dropDestinations() {
@@ -46,11 +50,11 @@ class Searchbar extends Component {
                 <h1> Hello SearchBar ! </h1>
 
                 <form onSubmit={this.onFormSubmit}>
-
                     <input id="destinationInput" value={this.state.term} onChange={this.onInputChange} />
                     <ul>
                         {this.dropDestinations()}
                     </ul>
+                    <button> Submit </button>
                 </form>
             </div>
         );
