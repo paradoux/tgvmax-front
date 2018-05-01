@@ -25,6 +25,7 @@ class Searchbar extends Component {
         this.setState({
             term: e.target.value.toUpperCase(),
         });
+        if (e.target.value.length > 1) { document.getElementById("searchbar-list").classList.add("displayer") } else { document.getElementById("searchbar-list").classList.remove("displayer") }
     }
 
     onFormSubmit(e) {
@@ -46,15 +47,14 @@ class Searchbar extends Component {
 
     render() {
         return (
-            <div>
-                <h1> Hello SearchBar ! </h1>
-
-                <form onSubmit={this.onFormSubmit}>
-                    <input id="destinationInput" value={this.state.term} onChange={this.onInputChange} />
-                    <ul>
+            <div id="banner-searchbar">
+                <form id="searchbar-form" onSubmit={this.onFormSubmit} autoComplete="off">
+                    <input id="searchbar-input" value={this.state.term} onChange={this.onInputChange} placeholder="Sélectionnez votre gare de départ" />
+                    <ul id="searchbar-list">
                         {this.dropDestinations()}
                     </ul>
                     <button> Submit </button>
+
                 </form>
             </div>
         );

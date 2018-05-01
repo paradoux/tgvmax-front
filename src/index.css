@@ -1,5 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Allerta+Stencil');
+
+
+
+
+h1 {
+  font-size: 65px;;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+.displayer {
+  visibility: visible;
+}
+
+
+/* Bannner */
+
+#banner{
+  height: 80vh;
+  position: relative;
+  background-image: url(./pictures/railway-image.jpg);
+  background-position: center center;
+  background-size: cover;
+
+}
+
+#banner-title{
+  position: absolute;
+  top:33%;
+  left:30%;
+  font-family: 'Allerta Stencil', sans-serif;
+  color:white;
+  font-size: 63px;
+}
+
+#banner-searchbar{
+  position: absolute;
+  top: 68%;
+  left: 26%;
+}
+#searchbar-form{
+  resize: none;
+  width: 100%;
+}
+
+#searchbar-input{
+  width: 100%;
+  font-size: 16px;
+	min-height: 40px;
+	border-radius: 25px;
+	line-height: 20px;
+	padding: 15px 30px 16px;
+  border: 1px solid #b9b9af;
+  background-color: #fff;
+  opacity: 0.9;
+  font-family: 'Lato', sans-serif;
+}
+ul{
+  visibility: hidden;
+  list-style-type: none;
+  padding: 0px;
+  width:500px;
+}
+
+li{
+  width:100%;
+}
+
+button{
+  width:100%
+}
+
+/* TrainList */
+
+#card-list{
+  height: 120vh;
+}
+
+.card{
+  height: 120px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, .3);
+  margin-top: 3px;
+}
+
+.card-title{
+  font-size: 16px;
+  text-align: center;
+}
+
+
+.card-departure, .card-arrival {
+  font-size: 10px;
+
 }
