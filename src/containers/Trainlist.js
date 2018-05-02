@@ -13,18 +13,16 @@ class Trainlist extends Component {
         let trains = this.props.trains.trains;
         if (trains) {
             return trains.records.map((record) => {
-                if (record.fields.od_happy_card === "OUI") {
-                    return (
-                        <div className="col-md-3">
-                            <div className="card" key={record.fields.recordid}>
-                                <h1 className="card-title">{(record.fields.destination)}</h1>
-                                <p className="card-departure">Départ: {record.fields.heure_depart}</p>
-                                <p className="card-arrival">Arrivée: {record.fields.heure_arrivee}</p>
-                            </div>
+                return (
+                    <div className="col-md-3">
+                        <div className="card" key={record.fields.recordid}>
+                            <h1 className="card-title">{(record.fields.destination)}</h1>
+                            <p className="card-date">Date: {record.fields.date}</p>
+                            <p className="card-departure">Départ: {record.fields.heure_depart}</p>
+                            <p className="card-arrival">Arrivée: {record.fields.heure_arrivee}</p>
                         </div>
-                    )
-                } else { return null }
-
+                    </div>
+                )
             });
         }
     }
