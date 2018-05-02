@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import moment from 'moment';
+import locale from 'moment/locale/fr';
 
 class Trainlist extends Component {
     constructor() {
@@ -10,6 +11,7 @@ class Trainlist extends Component {
     }
 
     renderList() {
+        moment.locale('fr');
         let trains = this.props.trains.trains;
         if (trains) {
             return trains.records.map((record) => {
@@ -17,7 +19,7 @@ class Trainlist extends Component {
                     <div className="col-md-3">
                         <div className="card" key={record.fields.recordid}>
                             <h1 className="card-title">{(record.fields.destination)}</h1>
-                            <p className="card-date">Date: {record.fields.date}</p>
+                            <p className="card-date">Date: {moment(record.fields.date).format('dddd DD MMM YYYY')}</p>
                             <p className="card-departure">Départ: {record.fields.heure_depart}</p>
                             <p className="card-arrival">Arrivée: {record.fields.heure_arrivee}</p>
                         </div>
