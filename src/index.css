@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Allerta+Stencil');
 @import url('http://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 
-
-
 h1 {
   font-size: 65px;;
 }
@@ -15,7 +13,6 @@ body {
 .displayer {
   visibility: visible;
 }
-
 
 /* Bannner */
 
@@ -47,6 +44,10 @@ body {
   width: 100%;
 }
 
+#searchbar-input:focus::-webkit-input-placeholder  {color:transparent;}
+.placeholder-fix:focus::-moz-placeholder   {color:transparent;}
+.placeholder-fix:-moz-placeholder   {color:transparent;}
+
 #searchbar-input{
   width: 100%;
   font-size: 16px;
@@ -66,7 +67,7 @@ body {
   border: 1px solid #DC3547;
   position: absolute;
   left: 102%;
-  top: 5%;
+  top:6.5%;
   width: 28%;
   border-radius: 50px;
   margin-right: 15px;
@@ -121,16 +122,47 @@ button{
   height: 120px;
   border-radius: 10px;
   box-shadow: 3px 3px 20px rgba(0, 0, 0, .3);
-  margin-top: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  position: relative;
 }
 
 .card-title{
+  color: #fff;
   font-size: 16px;
+  text-align: center;
+  background-color: #DC353C;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  height: 38px;
+  margin-bottom: 0px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-date{
   text-align: center;
 }
 
-
 .card-departure, .card-arrival {
-  font-size: 10px;
+  font-size: 13px;
+  text-align: center;
+  position: absolute;
+  top: 85px;
+}
+.card-departure{
+left: 5px;
+}
 
+.card-arrival{
+right: 5px;
+}
+
+.card-train-icon{
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  left: 46%;
+  top: 81px;
 }

@@ -16,12 +16,13 @@ class Trainlist extends Component {
         if (trains) {
             return trains.records.map((record) => {
                 return (
-                    <div className="col-md-3">
-                        <div className="card" key={record.fields.recordid}>
-                            <h1 className="card-title">{(record.fields.destination)}</h1>
-                            <p className="card-date">Date: {moment(record.fields.date).format('dddd DD MMM YYYY')}</p>
-                            <p className="card-departure">Départ: {record.fields.heure_depart}</p>
-                            <p className="card-arrival">Arrivée: {record.fields.heure_arrivee}</p>
+                    <div className="col-md-3" key={record.recordid + "b"}>
+                        <div className="card" key={record.recordid + "d"}>
+                            <h1 className="card-title" key={record.recordid + "h"}>{(record.fields.destination)}</h1>
+                            <p className="card-date" key={record.recordid + "p1"}> {moment(record.fields.date).format('dddd DD MMM').replace(/\b\w/g, l => l.toUpperCase())}</p>
+                            <p className="card-departure" key={record.recordid + "p2"}>Départ: {record.fields.heure_depart.replace(/:/, "h")}</p>
+                            <img src={require("../pictures/train-icon.png")} alt="train-icon" className="card-train-icon" key={record.recordid + "i"} />
+                            <p className="card-arrival" key={record.recordid + "p3"}>Arrivée: {record.fields.heure_arrivee.replace(/:/, "h")}</p>
                         </div>
                     </div>
                 )
