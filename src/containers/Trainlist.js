@@ -14,7 +14,19 @@ class Trainlist extends Component {
         moment.locale('fr');
         let trains = this.props.trains.trains;
         if (trains) {
+            trains.records = trains.records.sort((a, b) => {
+                let departurea = a.fields.heure_depart;
+                let departureb = b.fields.heure_depart;
+                let datea = a.fields.date;
+                let dateb = b.fields.date;
+                if (departurea.length < 5) { departurea = departurea.split(""); departurea.unshift("0"); departurea = departurea.join(''); }
+                if (departureb.length < 5) { departureb = departureb.split(""); departureb.unshift("0"); departureb = departureb.join(''); }
+                a = datea.replace(/-/g, "").concat(departurea.replace(/:/g, ''));
+                b = dateb.replace(/-/g, "").concat(departureb.replace(/:/g, ''));
+                return a - b;
+            });
             return trains.records.map((record) => {
+                console.log(record.fields.heure_depart);
                 return (
                     <div className="col-md-3" key={record.recordid + "b"}>
                         <div className="card" key={record.recordid + "d"}>
