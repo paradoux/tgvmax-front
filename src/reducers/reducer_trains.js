@@ -1,9 +1,12 @@
-import { FETCH_TRAIN } from '../actions/index';
+import { SELECT_DEPARTURE } from '../actions/index';
+import { RENDER_LIST } from '../actions/index';
 
-export default function trainReducer(state = {}, action) {
+export default function trainReducer(state = { departure: '', start: '0', render: false }, action) {
     switch (action.type) {
-        case FETCH_TRAIN:
-            return { ...state, trains: action.payload.data };
+        case SELECT_DEPARTURE:
+            return { ...state, departure: action.payload };
+        case RENDER_LIST:
+            return { ...state, render: true }
     }
     return state;
 }

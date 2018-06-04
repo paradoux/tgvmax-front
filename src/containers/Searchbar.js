@@ -3,10 +3,10 @@ import React, { Component } from "react";
 
 //Redux imports
 import { connect } from 'react-redux';
-import { bindActionCreators } from "redux";
 
 //App imports
-import { fetchTrains } from '../actions/index';
+import { selectDeparture } from '../actions/index';
+import { renderList } from '../actions/index';
 
 class Searchbar extends Component {
     constructor() {
@@ -26,7 +26,7 @@ class Searchbar extends Component {
             term: e.target.value.toUpperCase(),
         });
         if (e.target.value.length > 1) { document.getElementById("searchbar-list").classList.add("displayer") } else { document.getElementById("searchbar-list").classList.remove("displayer") }
-        this.onFormSubmit(e);
+        // this.onFormSubmit(e);
     }
 
     onFormSubmit(e) {
@@ -34,7 +34,8 @@ class Searchbar extends Component {
         let inputvalue = this.state.term;
         let splitted = inputvalue.split(/(\([^]+\))/g);
         if (splitted.length == 3) { inputvalue = splitted[0].concat(splitted[1].toLowerCase()) }
-        this.props.fetchTrains(inputvalue);
+        this.props.selectDeparture(inputvalue);
+        this.props.renderList();
     }
 
     dropDestinations() {
@@ -66,7 +67,14 @@ class Searchbar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchTrains }, dispatch);
+    return {
+        selectDeparture: (city) => {
+            dispatch(selectDeparture(city))
+        },
+        renderList: () => {
+            dispatch(renderList())
+        }
+    }
 }
 
 export default connect(null, mapDispatchToProps)(Searchbar);
