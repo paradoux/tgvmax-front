@@ -1,10 +1,23 @@
-import { SELECT_DEPARTURE } from '../actions/index';
-import { RENDER_LIST } from '../actions/index';
+import { SELECT_DEPARTURE, SELECT_ROW, RENDER_LIST, START_FETCH, FETCH_SUCCESS } from '../actions/index';
 
-export default function trainReducer(state = { departure: '', start: '0', render: false }, action) {
+export let initialState = {
+    city: '',
+    row: '0',
+    fetching: false,
+    success: false,
+    trains: []
+}
+
+export default function trainReducer(state = initialState, action) {
     switch (action.type) {
         case SELECT_DEPARTURE:
-            return { ...state, departure: action.payload };
+            return { ...state, city: action.payload };
+        case SELECT_ROW:
+            return { ...state, row: action.payload };
+        case START_FETCH:
+            return { ...state, fetching: true, success: false };
+        case FETCH_SUCCESS:
+            return { ...state, fetching: false, success: true, trains: [...state.trains, ...action.payload] };
         case RENDER_LIST:
             return { ...state, render: true }
     }

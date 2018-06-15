@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 
 //App imports
-import { selectDeparture } from '../actions/index';
+import { setDeparture, fetchTrains } from '../actions/index';
 import { renderList } from '../actions/index';
 
 class Searchbar extends Component {
@@ -31,11 +31,13 @@ class Searchbar extends Component {
 
     onFormSubmit(e) {
         e.preventDefault();
-        let inputvalue = this.state.term;
-        let splitted = inputvalue.split(/(\([^]+\))/g);
-        if (splitted.length == 3) { inputvalue = splitted[0].concat(splitted[1].toLowerCase()) }
-        this.props.selectDeparture(inputvalue);
-        this.props.renderList();
+        let row = this.props.row
+        let city = this.state.term;
+        let splitted = city.split(/(\([^]+\))/g);
+        if (splitted.length == 3) { city = splitted[0].concat(splitted[1].toLowerCase()) }
+        this.props.setDeparture(city);
+        this.props.fetchTrains(city, row);
+        /*  this.props.renderList(); */
     }
 
     dropDestinations() {
@@ -68,8 +70,11 @@ class Searchbar extends Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        selectDeparture: (city) => {
-            dispatch(selectDeparture(city))
+        setDeparture: (city) => {
+            dispatch(setDeparture(city))
+        },
+        fetchTrains: (city, row) => {
+            dispatch(fetchTrains(city, row))
         },
         renderList: () => {
             dispatch(renderList())
@@ -77,6 +82,13 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Searchbar);
+function mapStateToProps(state) {
+    return ({
+        row: state.trains.row,
+        city: state.trains.city
+    })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Searchbar);
 
 
