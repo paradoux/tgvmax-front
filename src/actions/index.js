@@ -10,80 +10,76 @@ export const SELECT_ROW = "SELECT_ROW";
 export const SELECT_DATE = "SELECT_DATE";
 export const FETCH_TRAINS = "FETCH_TRAINS";
 export const START_FETCH = "START_FETCH";
-export const FETCH_SUCCESS = "FETCH_SUCCESS"
+export const FETCH_SUCCESS = "FETCH_SUCCESS";
+export const FETCH_FAILURE = "FETCH_FAILURE";
 export const RENDER_LIST = "RENDER_LIST";
 
-/* 
-export function fetchTrains(city) {
-    const tgvmaxdispo = "&exclude.od_happy_card=NON"
-    const url = `${ROOT_URL}${start}${ROOT_URL2}${city}${tgvmaxdispo}`
-    const request = axios.get(url)
-
-    return {
-        type: FETCH_TRAIN,
-        payload: request
-    };
-}
- */
-
-export function setDeparture(city) {
+/* export const setDeparture = (city) => {
     return {
         type: SELECT_DEPARTURE,
         payload: city
     }
-}
+} */
 
-export function setDate(date) {
+export const setDate = (date) => {
     return {
         type: SELECT_DATE,
         payload: date
     }
 }
 
-export function setRow(row) {
+export const setRow = (row) => {
     return {
         type: SELECT_ROW,
         payload: row
     }
 }
 
-export function startFetch() {
+export const startFetch = () => {
     return {
         type: START_FETCH
     }
 }
 
-export function fetchSuccess(trains) {
+export const fetchSuccess = (trains) => {
     return {
         type: FETCH_SUCCESS,
         payload: trains
     }
 }
 
-export function fetchTrains(city, row) {
-    console.log(city, row)
-    const ROOT_URL1 = `https://data.opendatasoft.com/api/records/1.0/search/?dataset=tgvmax%40datasncf&start=`;
-    const ROOT_URL2 = `&rows=10000&facet=date&facet=destination&facet=origine&refine.origine=`;
-    const tgvmaxdispo = "&exclude.od_happy_card=NON"
-    return (dispatch) => {
-        dispatch(startFetch())
-        return (
-            axios.get(`${ROOT_URL1}${row}${ROOT_URL2}${city}${tgvmaxdispo}`)
-                .then((res) => res = res.data.records)
-                .then((res) => dispatch(fetchSuccess(res)))
-        )
+export const fetchFailure = () => {
+    return {
+        type: FETCH_FAILURE
     }
 }
 
 
-export function renderList() {
+export const fetchTrains = (city) => {
+    return async (dispatch) => {
+        dispatch(startFetch())
+        try {
+            let trains = await axios.get(`http://localhost:8080/trains/${city}`)
+            trains = trains.data
+            dispatch(fetchSuccess(trains))
+        }
+        catch (err) {
+            console.error('Sorry, the trains couldn\'t be uploaded due to the following error:' + err)
+            dispatch(fetchFailure())
+        }
+    }
+}
+
+
+
+/* export const renderList = () => {
     return {
         type: RENDER_LIST
     }
-}
+} */
 
 /* 
-export function fetchMore(){
+export  fetchMore(){
     let start = `0`;
 
 

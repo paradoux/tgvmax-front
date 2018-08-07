@@ -6,8 +6,8 @@ import registerServiceWorker from './registerServiceWorker';
 //Redux imports
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import ReduxPromise from 'redux-promise';
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 //App imports
@@ -15,9 +15,9 @@ import rootReducer from './reducers/index'
 import App from './App';
 import './index.css';
 
-export const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-
-export const store = createStoreWithMiddleware(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools(
+    applyMiddleware(thunk),
+))
 
 ReactDOM.render(
     <Provider store={store} >

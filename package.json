@@ -4,8 +4,9 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "moment": "^2.22.1",
-    "npm": "^6.1.0",
+    "npm": "^6.3.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
@@ -19,5 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.5"
   }
 }

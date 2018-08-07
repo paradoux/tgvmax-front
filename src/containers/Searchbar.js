@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 
 //App imports
-import { setDeparture, fetchTrains } from '../actions/index';
+import { fetchTrains } from '../actions/index';
 import { renderList } from '../actions/index';
 
 class Searchbar extends Component {
@@ -31,12 +31,11 @@ class Searchbar extends Component {
 
     onFormSubmit(e) {
         e.preventDefault();
-        let row = this.props.row
-        let city = this.state.term;
+        let city = this.state.term
         let splitted = city.split(/(\([^]+\))/g);
-        if (splitted.length == 3) { city = splitted[0].concat(splitted[1].toLowerCase()) }
-        this.props.setDeparture(city);
-        this.props.fetchTrains(city, row);
+        if (splitted.length === 3) { city = splitted[0].concat(splitted[1].toLowerCase()) }
+        //this.props.setDeparture(city);
+        this.props.fetchTrains(city);
         /*  this.props.renderList(); */
     }
 
@@ -45,7 +44,7 @@ class Searchbar extends Component {
             return (destination.slice(0, this.state.term.length) === this.state.term)
         });
         return destinations.map((destination) => {
-            if (this.state.term.length == destination.length || this.state.term.length == 0 || this.state.term.length == 1) {
+            if (this.state.term.length === destination.length || this.state.term.length === 0 || this.state.term.length === 1) {
                 return null
             } else {
                 return <li key={destination}> <button id="searchbar-list-item" onClick={this.onInputChange} value={destination}> {destination} </button> </li >
@@ -70,15 +69,15 @@ class Searchbar extends Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        setDeparture: (city) => {
-            dispatch(setDeparture(city))
+        /*         setDeparture: (city) => {
+                    dispatch(setDeparture(city))
+                }, */
+        fetchTrains: (city) => {
+            dispatch(fetchTrains(city))
         },
-        fetchTrains: (city, row) => {
-            dispatch(fetchTrains(city, row))
-        },
-        renderList: () => {
-            dispatch(renderList())
-        }
+        /*         renderList: () => {
+                    dispatch(renderList())
+                } */
     }
 }
 
