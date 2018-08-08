@@ -55,11 +55,11 @@ export const fetchFailure = () => {
 }
 
 
-export const fetchTrains = (city) => {
+export const fetchTrains = (city, date = null) => {
     return async (dispatch) => {
         dispatch(startFetch())
         try {
-            let trains = await axios.get(`http://localhost:8080/trains/${city}`)
+            let trains = await axios.get(`http://localhost:8080/trains/${city}/${date}`)
             trains = trains.data
             dispatch(fetchSuccess(trains))
         }

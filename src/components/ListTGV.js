@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 import { setRow, fetchTrains } from '../actions/index';
 
 import moment from 'moment';
-import locale from 'moment/locale/fr';
-
 
 class ListTGV extends Component {
     constructor() {
@@ -30,7 +28,6 @@ class ListTGV extends Component {
      */
     renderList() {
         let { trains } = this.props.trains
-        console.log(trains)
         return trains.map((train) => {
             return (
                 <div className="col-md-3" key={train.recordid + "b"}>

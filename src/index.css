@@ -63,6 +63,21 @@ body {
   outline: none;
 }
 
+#searchbar-date{
+  width: 100%;
+  font-size: 16px;
+	min-height: 40px;
+	border-radius: 25px;
+	line-height: 20px;
+	padding: 15px 30px 16px;
+  border: 1px solid #b9b9af;
+  background-color: #fff;
+  opacity: 0.9;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  outline: none;
+}
+
 #searchbar-submit{
   border: 1px solid #DC3547;
   position: absolute;

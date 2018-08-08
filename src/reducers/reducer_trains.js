@@ -1,4 +1,4 @@
-import { SELECT_DEPARTURE, FETCH_TRAINS, SELECT_ROW, RENDER_LIST, START_FETCH, FETCH_SUCCESS, FETCH_FAILURE } from '../actions/index';
+import { SELECT_ROW, RENDER_LIST, START_FETCH, FETCH_SUCCESS, FETCH_FAILURE } from '../actions/index';
 
 export let initialState = {
     city: '',
