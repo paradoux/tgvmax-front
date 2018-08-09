@@ -1,8 +1,8 @@
 //React imports
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 //Component imports
-import Searchbar from '../containers/Searchbar';
+import Searchbar from '../containers/Searchbar'
 
 
 class Banner extends Component {
@@ -18,8 +18,8 @@ class Banner extends Component {
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }
 
-export default Banner;
+export default Banner

@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import ListTGV from '../components/ListTGV';
+import ListTGV from '../components/ListTGV'
 
 class Trainlist extends Component {
     constructor() {
-        super();
+        super()
     }
 
     render() {
@@ -14,7 +14,7 @@ class Trainlist extends Component {
                 <div className="row">
                     <ListTGV />
                 </div>
-            );
+            )
         } else return (null)
     }
 }
@@ -25,4 +25,4 @@ function mapStateToProps(state) {
     })
 }
 
-export default connect(mapStateToProps)(Trainlist);
+export default connect(mapStateToProps)(Trainlist)

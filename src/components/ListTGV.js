@@ -20,7 +20,7 @@ class ListTGV extends Component {
         }
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
         window.addEventListener('scroll', this.scrollHandler, true);
         this.loadItems()
     }
