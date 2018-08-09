@@ -8,11 +8,10 @@ class Trainlist extends Component {
         super();
     }
 
-
     render() {
         if (this.props.success === true) {
             return (
-                <div>
+                <div className="row">
                     <ListTGV />
                 </div>
             );
@@ -22,7 +21,7 @@ class Trainlist extends Component {
 
 function mapStateToProps(state) {
     return ({
-        success: state.trains.success
+        success: state.request_results.success
     })
 }
 

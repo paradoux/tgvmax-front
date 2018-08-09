@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import trainReducer from './reducer_trains';
 
 const rootReducer = combineReducers({
-    trains: trainReducer
+    request_results: trainReducer
 })
 
 export default rootReducer;

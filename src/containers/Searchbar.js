@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 //App imports
 import { fetchTrains } from '../actions/index';
-import { renderList } from '../actions/index';
 
 class Searchbar extends Component {
     constructor() {
@@ -84,7 +83,7 @@ class Searchbar extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
     return {
         fetchTrains: (city, date) => {
             dispatch(fetchTrains(city, date))
@@ -92,13 +91,6 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-function mapStateToProps(state) {
-    return ({
-        row: state.trains.row,
-        city: state.trains.city
-    })
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Searchbar);
+export default connect(null, mapDispatchToProps)(Searchbar);
 
 
