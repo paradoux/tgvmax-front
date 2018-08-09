@@ -16,44 +16,45 @@ class ListTGV extends Component {
             loaded: [],
             rowa: 0,
             rowb: 20,
+            pix: 0
         }
     }
 
     componentDidMount = () => {
+        window.addEventListener('scroll', this.scrollHandler, true);
         this.loadItems()
     }
 
-    loadMore = (direction) => {
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.scrollHandler, true);
+    }
+
+    scrollHandler = () => {
+        if ((window.innerHeight + window.scrollY + 1) >= document.body.offsetHeight) {
+            this.loadMore()
+        }
+    }
+
+    loadMore = () => {
         let { rowa, rowb } = this.state
-        if (direction === 'forward') {
-            rowa += 20
-            rowb += 20
-            this.setState({ ...this.state, rowa, rowb }, () => {
-                this.loadItems()
-            })
-        }
-        else if (direction === 'backward') {
-            rowa -= 20
-            rowb -= 20
-            this.setState({ ...this.state, rowa, rowb }, () => {
-                this.loadItems()
-            })
-        }
+        rowa += 20
+        rowb += 20
+        this.setState({ ...this.state, rowa, rowb }, () => {
+            this.loadItems()
+        })
     }
 
     loadItems = () => {
         let { rowa, rowb } = this.state
         let { trains } = this.props
-        this.setState({ ...this.state, loaded: trains.slice(rowa, rowb) })
+        this.setState({ ...this.state, loaded: [...this.state.loaded, ...trains.slice(rowa, rowb)] })
     }
 
     render() {
         if (this.state.loaded.length !== 0) {
             return (
                 <div className="col-md-12">
-                    <button onClick={() => this.loadMore("backward")} > Précédent</button>
                     <List loaded={this.state.loaded} />
-                    <button onClick={() => this.loadMore("forward")} >Suivant</button>
                 </div>
             )
         }
