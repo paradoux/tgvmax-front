@@ -11,7 +11,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 
 //App imports
-import rootReducer from './reducers/index'
+import rootReducer from './redux/reducers/reducer_index'
 import App from './App'
 import './index.css'
 

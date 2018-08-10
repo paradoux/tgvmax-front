@@ -5,7 +5,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 //App imports
-import { fetchTrains } from '../actions/index'
+import { fetchTrains } from '../redux/actions/index'
+import Search from './Search'
 
 class Searchbar extends Component {
     constructor() {
@@ -27,7 +28,6 @@ class Searchbar extends Component {
             term: e.target.value.toUpperCase(),
         })
         if (e.target.value.length > 1) { document.getElementById('searchbar-list').classList.add('displayer') } else { document.getElementById('searchbar-list').classList.remove('displayer') }
-        // this.onFormSubmit(e);
     }
 
     onDateChange = (e) => {
@@ -38,7 +38,7 @@ class Searchbar extends Component {
         })
     }
 
-    onFormSubmit(e) {
+    onFormSubmit = (e) => {
         e.preventDefault()
         var city = this.state.term
         var { date } = this.state
@@ -54,7 +54,7 @@ class Searchbar extends Component {
         }
     }
 
-    dropDestinations() {
+    dropDestinations = () => {
         let destinations = this.state.destinations.filter((destination) => {
             return (destination.slice(0, this.state.term.length) === this.state.term)
         })
@@ -67,19 +67,16 @@ class Searchbar extends Component {
         })
     }
 
+    resetCity = () => {
+        this.setState({ ...this.state, term: '' })
+    }
+
+    resetDate = () => {
+        this.setState({ ...this.state, date: '' })
+    }
+
     render() {
-        return (
-            <div id="banner-searchbar">
-                <form id="searchbar-form" autoComplete="off">
-                    <input id="searchbar-input" value={this.state.term} onChange={this.onDestinationChange} placeholder="Sélectionnez votre gare de départ" />
-                    <ul id="searchbar-list">
-                        {this.dropDestinations()}
-                    </ul>
-                    <input id="searchbar-date" value={this.state.date} onChange={this.onDateChange} placeholder="Sélectionnez votre date de départ DD/MM/YYYY" onFocus={(e) => e.target.placeholder = ''} onBlur={(e) => e.target.placeholder = 'Sélectionnez votre date de départ DD/MM/YYYY'} />
-                </form>
-                <button id="searchbar-submit" onClick={this.onFormSubmit}> C&#39;est parti ! </button>
-            </div>
-        )
+        return <Search onDestinationChange={this.onDestinationChange} dropDestinations={this.dropDestinations} onDateChange={this.onDateChange} onFormSubmit={this.onFormSubmit} resetCity={this.resetCity} resetDate={this.resetDate} term={this.state.term} date={this.state.date} />
     }
 }
 
