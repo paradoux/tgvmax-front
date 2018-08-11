@@ -5,6 +5,7 @@ import React from 'react'
 import moment from 'moment'
 import locale from 'moment/locale/fr';
 
+/* The result component displays the info received from the Results component */
 const Result = (props) => {
     moment.locale('fr');
     return (

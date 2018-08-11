@@ -23,9 +23,11 @@ export const fetchFailure = () => {
     }
 }
 
+/* Allows us to dispatch an action at each stage of the request (start, success, failure ) */
 export const fetchTrains = (city, date = null) => {
     return async (dispatch) => {
         dispatch(startFetch())
+        /* Waits for the results of the request before dispatching fetchSuccess */
         try {
             let trains = await axios.get(`http://localhost:8080/trains/${city}/${date}`)
             trains = trains.data
