@@ -24,9 +24,10 @@ class Searchbar extends Component {
     /* departure change handler */
     onDepartureChange = (e) => {
         e.preventDefault()
+        let term = e.target.value.toUpperCase()
         this.setState({
             ...this.state,
-            term: e.target.value.toUpperCase(),
+            term
         })
         /* Waits for two letters before showing the list of suggestions */
         if (e.target.value.length > 1) { document.getElementById('searchbar-list').classList.add('displayer') } else { document.getElementById('searchbar-list').classList.remove('displayer') }
@@ -34,9 +35,10 @@ class Searchbar extends Component {
     /* Sate change handler */
     onDateChange = (e) => {
         e.preventDefault()
+        let date = e.target.value
         this.setState({
             ...this.state,
-            date: e.target.value
+            date
         })
     }
 
